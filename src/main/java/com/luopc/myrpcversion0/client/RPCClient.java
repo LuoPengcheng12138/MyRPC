@@ -13,9 +13,8 @@ public class RPCClient {
         System.out.println("client start...");
         try (Socket socket = new Socket("127.0.0.1", 8879)){
 
-
-            ObjectInputStream objectInputStream=new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream objectOutputStream=new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream objectInputStream=new ObjectInputStream(socket.getInputStream());
 
 
             objectOutputStream.writeInt(new Random().nextInt());

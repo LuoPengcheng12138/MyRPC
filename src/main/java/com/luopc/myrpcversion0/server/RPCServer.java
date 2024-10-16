@@ -1,6 +1,8 @@
 package com.luopc.myrpcversion0.server;
 
 import com.luopc.myrpcversion0.common.User;
+
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,8 +16,9 @@ public class RPCServer {
             System.out.println("server start...");
             Socket socket = serverSocket.accept();
 
-            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+
             System.out.println("server new Thread...");
 
             new Thread(() -> {
@@ -30,7 +33,11 @@ public class RPCServer {
                         objectOutputStream.writeObject(usr);
                         objectOutputStream.flush();
 
+                    } catch (EOFException e) {
+                        System.out.println("EOFException");
+                        throw new RuntimeException(e);
                     } catch (IOException e) {
+                        System.out.println("IOException");
                         throw new RuntimeException(e);
                     }
 
@@ -59,7 +66,9 @@ public class RPCServer {
 //           }
 
         } catch (Exception e) {
+            System.out.println("服务端读取失败");
             throw new RuntimeException(e);
+
         }
 
     }

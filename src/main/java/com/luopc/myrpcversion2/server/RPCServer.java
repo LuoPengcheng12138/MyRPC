@@ -1,8 +1,8 @@
-package com.luopc.myrpcversion1.server;
+package com.luopc.myrpcversion2.server;
 
-import com.luopc.myrpcversion1.common.RPCRequest;
-import com.luopc.myrpcversion1.common.RPCResponse;
-import com.luopc.myrpcversion1.common.User;
+import com.luopc.myrpcversion2.common.RPCRequest;
+import com.luopc.myrpcversion2.common.RPCResponse;
+import com.luopc.myrpcversion2.common.User;
 
 import java.io.EOFException;
 import java.io.IOException;

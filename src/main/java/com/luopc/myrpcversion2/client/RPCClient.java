@@ -2,6 +2,8 @@ package com.luopc.myrpcversion2.client;
 
 import com.luopc.myrpcversion2.common.User;
 import com.luopc.myrpcversion2.service.UserService;
+import com.luopc.myrpcversion2.service.BlogService;
+import com.luopc.myrpcversion2.common.Blog;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,6 +23,11 @@ public class RPCClient {
         User user= User.builder().id(1).userName("lpc").sex(true).build();
         Integer integer=proxy.addUser(user);
         System.out.println("addUser:"+integer);
+
+        // 客户中添加新的测试用例
+        BlogService blogService = clientProxy.getProxy(BlogService.class);
+        Blog blogById = blogService.getBlogById(10000);
+        System.out.println("get blog from server：" + blogById);
 
     }
 }

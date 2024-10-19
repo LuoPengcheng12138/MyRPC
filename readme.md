@@ -23,3 +23,7 @@ Version 2:
 3 单独写一个 WorkThread 解耦
 4 线程池 可以了解一下
 
+Version 3:
+    Netty
+
+

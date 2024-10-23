@@ -1,7 +1,6 @@
-package com.luopc.myrpcversion3.server;
+package com.luopc.myrpcversion3.service;
 
-import com.luopc.myrpcversion2.common.Blog;
-import com.luopc.myrpcversion2.service.BlogService;
+import com.luopc.myrpcversion3.common.Blog;
 
 public class BlogServiceImpl implements BlogService {
     @Override

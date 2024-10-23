@@ -1,7 +1,7 @@
-package com.luopc.myrpcversion3.server;
+package com.luopc.myrpcversion3.service;
 
 import com.luopc.myrpcversion3.common.User;
-import com.luopc.myrpcversion3.service.UserService;
+
 import java.util.Random;
 import java.util.UUID;
 

@@ -16,7 +16,7 @@ public class NettyRPCServer implements RPCServer {
         // netty 服务线程组boss负责建立连接， work负责具体的请求
         NioEventLoopGroup bossGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
-        System.out.printf("Netty Server started on port %d\n...",port);
+        System.out.printf("Netty Server started on port %d ...\n",port);
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
 

@@ -19,8 +19,10 @@ public class WorkThread implements Runnable {
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             RPCRequest request = (RPCRequest) ois.readObject();
+
             Method method=serviceProvide.get(request.getInterfaceName()).getClass().getMethod(request.getMethodName(), request.getParamTypes());
             Object object= method.invoke(serviceProvide.get(request.getInterfaceName()), request.getParams());
+
             oos.writeObject(RPCResponse.success(object));
             oos.flush();
         }

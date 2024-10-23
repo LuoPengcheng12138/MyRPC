@@ -8,7 +8,9 @@ import com.luopc.myrpcversion4.service.UserService;
 public class TestClient {
     public static void main(String[] args) {
         RPCClient rpcClient = new NettyRPCClient("127.0.0.1", 8899);
+
         RPCClientProxy clientProxy=new RPCClientProxy(rpcClient);
+
         UserService proxy = clientProxy.getProxy(UserService.class);
 
         User userByUserId = proxy.getUserByUserId(1);

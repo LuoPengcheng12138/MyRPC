@@ -24,7 +24,20 @@ Version 2:
 4 线程池 可以了解一下
 
 Version 3:
-    Netty
+    Netty+NIO
+    阅读博客文章
+    有空可以看下Netty源码
+
+Version 4:
+    自定义 encode与decode
+bug 1:
+    //更新
+    private Class<?> dataType;
+    public static RPCResponse success(Object data) {
+    return RPCResponse.builder().dataType(data.getClass()).StateCode(200).Data(data).build();
+    }
+bug 2:
+    out.write*Int*(bytes.length);
 
 
 

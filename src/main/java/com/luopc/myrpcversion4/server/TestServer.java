@@ -12,10 +12,7 @@ public class TestServer {
         ServiceProvider serviceProvider=new ServiceProvider();
         serviceProvider.provideServiceInterface(blogService);
         serviceProvider.provideServiceInterface(userService);
-        //SimpleRPCRPCServer simpleRPCRPCServer=new SimpleRPCRPCServer(serviceProvider.getServiceProvide());
-        //simpleRPCRPCServer.start(8899);
-        //ThreadPoolRPCRPCServer threadPoolRPCRPCServer=new ThreadPoolRPCRPCServer(serviceProvider.getServiceProvide());
-        //threadPoolRPCRPCServer.start(8899);
+    ;
 
         RPCServer rpcServer=new NettyRPCServer(serviceProvider.getServiceProvide());
         rpcServer.start(8899);

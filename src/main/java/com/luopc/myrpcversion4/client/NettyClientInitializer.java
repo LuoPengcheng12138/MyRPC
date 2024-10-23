@@ -1,5 +1,8 @@
 package com.luopc.myrpcversion4.client;
 
+import com.luopc.myrpcversion4.codec.JsonSerializer;
+import com.luopc.myrpcversion4.codec.MyDecode;
+import com.luopc.myrpcversion4.codec.MyEncode;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -13,16 +16,18 @@ public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
-        pipeline.addLast(new LengthFieldPrepender(4));
-        pipeline.addLast(new ObjectEncoder());
-
-        pipeline.addLast(new ObjectDecoder(new ClassResolver() {
-            @Override
-            public Class<?> resolve(String className) throws ClassNotFoundException {
-                return Class.forName(className);
-            }
-        }));
+//        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
+//        pipeline.addLast(new LengthFieldPrepender(4));
+//        pipeline.addLast(new ObjectEncoder());
+//
+//        pipeline.addLast(new ObjectDecoder(new ClassResolver() {
+//            @Override
+//            public Class<?> resolve(String className) throws ClassNotFoundException {
+//                return Class.forName(className);
+//            }
+//        }));
+        pipeline.addLast(new MyDecode());
+        pipeline.addLast(new MyEncode(new JsonSerializer()));
         pipeline.addLast(new NettyClientHandler());
     }
 }

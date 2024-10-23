@@ -19,11 +19,13 @@ public class RPCResponse implements Serializable {
     //状态信息
     private int StateCode;
     private String ErrorMessage;
+    //更新
+    private Class<?> dataType;
     //数据
     private Object Data;
 
     public static RPCResponse success(Object data) {
-        return RPCResponse.builder().StateCode(200).Data(data).build();
+        return RPCResponse.builder().dataType(data.getClass()).StateCode(200).Data(data).build();
     }
     public static RPCResponse fail() {
         return RPCResponse.builder().StateCode(500).ErrorMessage("RPCResponse Error").build();

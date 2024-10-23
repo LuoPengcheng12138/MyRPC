@@ -38,6 +38,7 @@ public class NettyRPCClient implements RPCClient {
 
             AttributeKey<RPCResponse> key = AttributeKey.valueOf("RPCResponse");
             RPCResponse response = channel.attr(key).get();
+
             System.out.println(response);
             return response;
         } catch (InterruptedException e) {

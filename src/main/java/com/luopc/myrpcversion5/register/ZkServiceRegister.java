@@ -13,7 +13,7 @@ public class ZkServiceRegister implements ServiceRegister {
     // curator 提供zookeeper客户端
     private CuratorFramework client;
     // zookeeper 根路径节点
-    private static final String ZK_ROOT_PATH = "/my-rpc-version5";
+    private static final String ZK_ROOT_PATH = "my_rpc_version5";
 
     public ZkServiceRegister() {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
@@ -24,6 +24,7 @@ public class ZkServiceRegister implements ServiceRegister {
     }
     @Override
     public void register(String serviceName, InetSocketAddress serverAddress){
+        System.out.println("zookeeper service register ...");
         try{
             // serviceName创建成永久节点，服务提供者下线时，不删服务名，只删地址
             if(client.checkExists().forPath("/"+serviceName)==null){

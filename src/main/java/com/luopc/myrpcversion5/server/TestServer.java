@@ -9,12 +9,11 @@ public class TestServer {
     public static void main(String[] args) {
         BlogService blogService = new BlogServiceImpl();
         UserService userService = new UserServiceImpl();
-        ServiceProvider serviceProvider=new ServiceProvider();
+        ServiceProvider serviceProvider=new ServiceProvider("127.0.0.1",8899);
         serviceProvider.provideServiceInterface(blogService);
         serviceProvider.provideServiceInterface(userService);
-    ;
 
-        RPCServer rpcServer=new NettyRPCServer(serviceProvider.getServiceProvide());
+        RPCServer rpcServer=new SimpleRPCRPCServer(serviceProvider.getServiceProvide());
         rpcServer.start(8899);
 
 

@@ -35,9 +35,18 @@ bug 1:
     private Class<?> dataType;
     public static RPCResponse success(Object data) {
     return RPCResponse.builder().dataType(data.getClass()).StateCode(200).Data(data).build();
-    }
+    }//增加dataType属性
 bug 2:
     out.write*Int*(bytes.length);
+
+Version 5:
+记得启动zookeeper ：zkServer start -> zkcli  -> ls /my_rpc_version5
+定义服务注册借口： ZkServiceRegister implements ServiceRegister
+客户端初始化注册中心
+服务端需要把自己的ip，端口给注册中心：ServiceProvider.java:
+-> serviceRegister.register(clazz.getName(),new InetSocketAddress(host,port));
+
+
 
 
 

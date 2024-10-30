@@ -7,7 +7,7 @@ import com.luopc.myrpcversion5.service.UserService;
 
 public class TestClient {
     public static void main(String[] args) {
-        RPCClient rpcClient = new NettyRPCClient("127.0.0.1", 8899);
+        RPCClient rpcClient = new SimpleRPCClient();
 
         RPCClientProxy clientProxy=new RPCClientProxy(rpcClient);
 

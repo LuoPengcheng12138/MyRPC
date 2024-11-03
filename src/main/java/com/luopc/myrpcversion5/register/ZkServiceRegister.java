@@ -1,5 +1,7 @@
 package com.luopc.myrpcversion5.register;
 
+import com.luopc.myrpcversion5.loadbalance.LoadBalance;
+import com.luopc.myrpcversion5.loadbalance.RandomLoadBalance;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -14,6 +16,9 @@ public class ZkServiceRegister implements ServiceRegister {
     private CuratorFramework client;
     // zookeeper 根路径节点
     private static final String ZK_ROOT_PATH = "my_rpc_version5";
+
+    private LoadBalance loadBalance = new RandomLoadBalance();
+
 
     public ZkServiceRegister() {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
@@ -45,7 +50,8 @@ public class ZkServiceRegister implements ServiceRegister {
         try{
             List<String> children = client.getChildren().forPath("/"+serviceName);
             //这里默认用的第一个，后面加负载均衡
-            String string=children.get(0);
+            //String string=children.get(0);
+            String string=loadBalance.balance(children);
             return parseAddress(string);
         } catch (Exception e) {
             e.printStackTrace();

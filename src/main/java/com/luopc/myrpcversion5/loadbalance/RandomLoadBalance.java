@@ -8,7 +8,7 @@ public class RandomLoadBalance implements LoadBalance {
     public String balance(List<String> addressList) {
         Random random = new Random();
         int choose = random.nextInt(addressList.size());
-        System.out.println("RandomLoadBalance choose " + choose + " server");
+        //System.out.println("RandomLoadBalance choose " + choose + " server");
         return addressList.get(choose);
     }
 }

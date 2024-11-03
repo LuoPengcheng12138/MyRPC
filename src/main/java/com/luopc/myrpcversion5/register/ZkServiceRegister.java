@@ -2,6 +2,7 @@ package com.luopc.myrpcversion5.register;
 
 import com.luopc.myrpcversion5.loadbalance.LoadBalance;
 import com.luopc.myrpcversion5.loadbalance.RandomLoadBalance;
+import com.luopc.myrpcversion5.loadbalance.RoundLoadBalance;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -17,7 +18,7 @@ public class ZkServiceRegister implements ServiceRegister {
     // zookeeper 根路径节点
     private static final String ZK_ROOT_PATH = "my_rpc_version5";
 
-    private LoadBalance loadBalance = new RandomLoadBalance();
+    private LoadBalance loadBalance = new RoundLoadBalance();
 
 
     public ZkServiceRegister() {
@@ -29,7 +30,7 @@ public class ZkServiceRegister implements ServiceRegister {
     }
     @Override
     public void register(String serviceName, InetSocketAddress serverAddress){
-        System.out.println("zookeeper service register ...");
+        System.out.println("zookeeper service register "+serviceName);
         try{
             // serviceName创建成永久节点，服务提供者下线时，不删服务名，只删地址
             if(client.checkExists().forPath("/"+serviceName)==null){

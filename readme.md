@@ -1,3 +1,5 @@
+https://gitee.com/cjwwarren/MyRPCFromZero#myrpcfromzero
+
 Version 0: 
     最基础RPC通信
 RPCServer.java:
@@ -45,6 +47,9 @@ Version 5:
 客户端初始化注册中心
 服务端需要把自己的ip，端口给注册中心：ServiceProvider.java:
 -> serviceRegister.register(clazz.getName(),new InetSocketAddress(host,port));
+
+Version 6:
+实现负载均衡
 
 
 
